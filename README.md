@@ -1,8 +1,9 @@
-- [2-1 如何在列表、字典、集合中根据条件筛选数据](#2-1-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%88%97%E8%A1%A8%E5%AD%97%E5%85%B8%E9%9B%86%E5%90%88%E4%B8%AD%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE)
+- [2-1 如何在列表、字典、集合中根据条件筛选数据？](#2-1-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%88%97%E8%A1%A8%E5%AD%97%E5%85%B8%E9%9B%86%E5%90%88%E4%B8%AD%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE)
 - [2-2 如何为元组中的每个元素命名，提高程序可读性？](#2-2-%E5%A6%82%E4%BD%95%E4%B8%BA%E5%85%83%E7%BB%84%E4%B8%AD%E7%9A%84%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E5%91%BD%E5%90%8D%E6%8F%90%E9%AB%98%E7%A8%8B%E5%BA%8F%E5%8F%AF%E8%AF%BB%E6%80%A7)
-- [2-3 如何统计序列中元素出现频度](#2-3-%E5%A6%82%E4%BD%95%E7%BB%9F%E8%AE%A1%E5%BA%8F%E5%88%97%E4%B8%AD%E5%85%83%E7%B4%A0%E5%87%BA%E7%8E%B0%E9%A2%91%E5%BA%A6)
-- [2-4 如何根据字典中的值的大小，对字典中的项排序](#2-4-%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E5%80%BC%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%B9%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E9%A1%B9%E6%8E%92%E5%BA%8F)
-- [2-5 如何快速找到多个字典中的公共键](#2-5-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0%E5%A4%9A%E4%B8%AA%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E5%B7%A5%E5%85%B1%E5%BB%BA)
+- [2-3 如何统计序列中元素出现频度？](#2-3-%E5%A6%82%E4%BD%95%E7%BB%9F%E8%AE%A1%E5%BA%8F%E5%88%97%E4%B8%AD%E5%85%83%E7%B4%A0%E5%87%BA%E7%8E%B0%E9%A2%91%E5%BA%A6)
+- [2-4 如何根据字典中的值的大小，对字典中的项排序？](#2-4-%E5%A6%82%E4%BD%95%E6%A0%B9%E6%8D%AE%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E5%80%BC%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%B9%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E9%A1%B9%E6%8E%92%E5%BA%8F)
+- [2-5 如何快速找到多个字典中的公共键？](#2-5-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%89%BE%E5%88%B0%E5%A4%9A%E4%B8%AA%E5%AD%97%E5%85%B8%E4%B8%AD%E7%9A%84%E5%85%AC%E5%85%B1%E9%94%AE)
+- [2-6 如何让字典保持有序？](#2-6-%E5%A6%82%E4%BD%95%E8%AE%A9%E5%AD%97%E5%85%B8%E4%BF%9D%E6%8C%81%E6%9C%89%E5%BA%8F?)
 
 ### 2-1 如何在列表、字典、集合中根据条件筛选数据
 #### 列表
@@ -150,4 +151,37 @@ l = map(dict.keys, [s1, s2, s3])
 
 # reduce得到所有字典的keys的集合的交集
 reduce(lambda a, b: a & b, l)
+```
+
+###  如何让字典保持有序?
+方法1： OrderedDict
+```python
+from collections import OrderedDict
+d = OrderedDict()
+d['Jim'] = (1, 35)
+d['Leo'] = (2, 37)
+d['Bob'] = (3, 40)
+for k in d: print(k)
+```
+案例
+```python
+from collections import OrderedDict
+from time import time
+from random import randint
+
+d = OrderedDict()
+players = list('ABCDEFGH')
+start = time()
+for i in range(7):
+    input()
+    index = randint(0, 7 - i)
+    p = players.pop(index)
+    end = time()
+    print(i + 1, p, end - start)
+    d[p] = (i + 1, end - start)
+
+print('-' * 20)
+
+for k in d:
+    print(k, d[k])
 ```
