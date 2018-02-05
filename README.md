@@ -1,4 +1,9 @@
-## 2-1 如何在列表、字典、集合中根据条件筛选数据
+- [2-1 如何在列表、字典、集合中根据条件筛选数据](#2-1)
+- [2-2 如何为元组中的每个元素命名，提高程序可读性？](#2-2)
+- [2-3 如何统计序列中元素出现频度](#2-3)
+- [2-4 如何根据字典中的值的大小，对字典中的项排序](#2-4)
+
+### 2-1 如何在列表、字典、集合中根据条件筛选数据
 #### 列表
 方式1 filter 函数
 ```python
@@ -41,7 +46,7 @@ result = {x for x in s if x % 3 == 0}
 print(result)
 ```
 
-## 2-2 如何为元组中的每个元素命名，提高程序可读性？
+### 2-2 如何为元组中的每个元素命名，提高程序可读性？
 方案一
 ```python
 # NAME = 0
@@ -69,7 +74,7 @@ print(s.name)
 print(isinstance(s, tuple)) # True
 
 ```
-## 2-3 如何统计序列中元素出现频度
+### 2-3 如何统计序列中元素出现频度
 方法1
 ```python
 from random import randint
@@ -100,4 +105,22 @@ c3 = Counter(txt)
 
 print(c3)
 print(c3.most_common(10))
+```
+###  2-4 如何根据字典中的值的大小，对字典中的项排序
+方法1 利用zip将字典数据转换元组
+```python
+from random import randint
+d = {x: randint(60, 100) for x in 'xyzabc'}
+keys = d.keys()
+values = d.values()
+t = zip(values, keys)
+print(sorted(t))
+```
+方法2 传递sorted函数的key参数
+```python
+from random import randint
+d = {x: randint(60, 100) for x in 'xyzabc'}
+l = d.items()
+result = sorted(l, key=lambda x: x[1])
+print(result)
 ```
